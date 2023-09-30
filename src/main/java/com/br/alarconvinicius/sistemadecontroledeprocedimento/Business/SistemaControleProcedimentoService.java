@@ -26,17 +26,22 @@ public class SistemaControleProcedimentoService {
 
     // Método para retornar menu de cadastro de serviços disponíveis
     public void cadastrarServicos(Scanner scanner) {
+        System.out.println("");
         System.out.println("Cadastrar Serviço: ");
         System.out.println("");
 
-        System.out.println("Nome: ");
+        System.out.print("Nome: ");
         String nome = scanner.nextLine();
 
-        System.out.println("Descrição: ");
+        System.out.println("");
+
+        System.out.print("Descrição: ");
         String descricao = scanner.nextLine();
 
+        System.out.println("");
+
         System.out.println("Valor: ");
-        double valor = Double. parseDouble(scanner.nextLine());
+        double valor = Double.parseDouble(scanner.nextLine());
 
         System.out.println("");
 
@@ -45,26 +50,32 @@ public class SistemaControleProcedimentoService {
 
     // Método para retornar menu de cadastro de serviços disponíveis
     public void cadastrarProcedimentoRealizado(Scanner scanner) {
+        System.out.println("");
         System.out.println("Cadastrar Procedimento Realizado: ");
+        System.out.println("");
         menuServicos();
 
-        // Solicita ao usuário a escolha do serviço
         System.out.print("Escolha o número do serviço: ");
         int escolhaServico = scanner.nextInt();
-        scanner.nextLine();  // Consumir a quebra de linha deixada pelo nextInt()
+        scanner.nextLine();
 
-        // Verifique se a escolha é válida (dentro dos limites)
+        System.out.println("");
+
         if (escolhaServico >= 1 && escolhaServico <= _servicoRepository.listarServicos().size()) {
             ServicoEstetico servicoEscolhido = _servicoRepository.listarServicos().get(escolhaServico - 1);
 
             System.out.print("Data: ");
             String data = scanner.nextLine();
 
+            System.out.println("");
+
             System.out.print("Descrição: ");
             String descricao = scanner.nextLine();
 
+            System.out.println("");
+
             System.out.print("Valor Recebido: ");
-            double valor = Double. parseDouble(scanner.nextLine());
+            double valor = Double.parseDouble(scanner.nextLine());
 
             System.out.println("");
 
@@ -78,6 +89,7 @@ public class SistemaControleProcedimentoService {
     public void menuServicos() {
         var servicosDb = _servicoRepository.listarServicos();
 
+        System.out.println("");
         System.out.println("Serviços disponíveis: ");
         System.out.println("");
         for (int i = 0; i < servicosDb.size(); i++) {
