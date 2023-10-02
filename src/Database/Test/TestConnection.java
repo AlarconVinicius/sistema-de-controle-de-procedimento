@@ -10,6 +10,7 @@ import Database.Models.AestheticProcedures;
 import Database.Models.ProceduresPerformed;
 import Database.Repositories.AestheticProceduresRepository;
 import Database.Repositories.ProceduresPerformedRepository;
+import Database.Repositories.UserRepository;
 
 
 /**
@@ -19,11 +20,13 @@ import Database.Repositories.ProceduresPerformedRepository;
 public class TestConnection {
     public static void main(String[] args) {
         DbContext.getConnection();
+        DbContext.createUserTableAndDefaultUser();
         DbContext.createAestheticProceduresTable();
         DbContext.createProceduresPerformedTable();
         
         AestheticProceduresRepository _aesProduceresRepository = new AestheticProceduresRepository();
         ProceduresPerformedRepository _procePerformedRepository = new ProceduresPerformedRepository();
+        UserRepository _userRepository = new UserRepository();
         
 //        _aesProduceresRepository.create(new AestheticProcedures("Servico 1", "Desc", 20.00));
 //        _aesProduceresRepository.create(new AestheticProcedures("Servico 2", "Desc", 50.00));
@@ -33,12 +36,18 @@ public class TestConnection {
 //        _procePerformedRepository.create(new ProceduresPerformed("10/01/2023", 2, 200));
 //        _procePerformedRepository.create(new ProceduresPerformed("11/01/2023", 3, 200));
         
+        var user = _userRepository.findAll();
+        
         var procedures = _aesProduceresRepository.findAll();
         var procedure = _aesProduceresRepository.findById(1); 
         
         var procesPerformed = _procePerformedRepository.findAll();
         var procePerformed = _procePerformedRepository.findById(1);
         
+        System.out.println("Users: " + user.size());
+        System.out.println("---------------------------------");
+        System.out.println("User: " + user);
+        System.out.println("---------------------------------");
         System.out.println("Procedures: " + procedures.size());
         System.out.println("---------------------------------");
         System.out.println("Procedures: " + procedures);
