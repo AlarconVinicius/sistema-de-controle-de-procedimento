@@ -22,7 +22,7 @@ public class DbContext {
         try
         {
             connection = DriverManager.getConnection(url);
-            System.out.println("Conexão feita");
+//            System.out.println("Conexão feita");
         }
         catch(SQLException e)
         {
@@ -36,7 +36,7 @@ public class DbContext {
         if (connection != null) {
             try {
                 connection.close();
-                System.out.println("Conexão fechada com sucesso.");
+//                System.out.println("Conexão fechada com sucesso.");
             } catch (SQLException e) {
                 System.err.println("Falha ao fechar a conexão: " + e.getMessage());
             }
@@ -56,7 +56,7 @@ public class DbContext {
                                 "price REAL" +
                                 ");"
                 );
-                System.out.println("Tabela 'aesthetic_procedures' criada com sucesso.");
+//                System.out.println("Tabela 'aesthetic_procedures' criada com sucesso.");
             } catch (SQLException e) {
                 System.err.println("Falha ao criar tabela: " + e.getMessage());
             } finally {
@@ -77,7 +77,7 @@ public class DbContext {
                                 "amount_received REAL" +
                                 ");"
                 );
-                System.out.println("Tabela 'tbl_procedures_performed' criada com sucesso.");
+//                System.out.println("Tabela 'tbl_procedures_performed' criada com sucesso.");
             } catch (SQLException e) {
                 System.err.println("Falha ao criar tabela: " + e.getMessage());
             } finally {
