@@ -1,2 +1,54 @@
+# General exclusions
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# Editor/IDE Files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Build and Compiled Files
 /target/
+/bin/
+/build/
+/out/
+
+# Dependency Directories
+/node_modules/
+/bower_components/
+/.venv/
+/pipenv/
+/.gradle/
+/.bundle/
+/.sass-cache/
+
+# Logs and Temp Files
+/log/
+/temp/
+/tmp/
+
+# NetBeans project files
+/nbproject/
+/build.xml
+/nb-configuration.xml
+/nbactions.xml
+
+# Maven specific files
+.mvn/
+target/
+mvnw
+mvnw.cmd
+
+# Java Ant
+build/
+dist/
+nbbuild/
+nbdist/
+nbproject/private/
+nbproject/build-impl.xml
+
+# SQLite Database
 *.db
