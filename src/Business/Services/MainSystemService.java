@@ -7,8 +7,10 @@ package Business.Services;
 
 import Database.Models.AestheticProcedures;
 import Database.Models.ProceduresPerformed;
+import Database.Models.User;
 import Database.Repositories.AestheticProceduresRepository;
 import Database.Repositories.ProceduresPerformedRepository;
+import Database.Repositories.UserRepository;
 import java.util.List;
 import java.util.Scanner;
 
@@ -20,9 +22,11 @@ public class MainSystemService {
 
     private final AestheticProceduresRepository _aProcedureRepository;
     private final ProceduresPerformedRepository _pPerformedRepository;
-    public MainSystemService(AestheticProceduresRepository aProcedureRepository, ProceduresPerformedRepository pPerformedRepository) {
+    private final UserRepository _userRepository;
+    public MainSystemService(AestheticProceduresRepository aProcedureRepository, ProceduresPerformedRepository pPerformedRepository, UserRepository userRepository) {
         _aProcedureRepository = aProcedureRepository;
         _pPerformedRepository = pPerformedRepository;
+        _userRepository = userRepository;
     }
 
     // Método para retornar menu de cadastro de serviços disponíveis
@@ -83,18 +87,28 @@ public class MainSystemService {
 
     // Método para retornar menu de serviços disponíveis
     public void menuServicos() {
-         List<AestheticProcedures> servicosDb = _aProcedureRepository.findAll();
+        List<AestheticProcedures> servicosDb = _aProcedureRepository.findAll();
 
         System.out.println("");
         System.out.println("Serviços disponíveis: ");
         System.out.println("");
         for (AestheticProcedures servico : servicosDb) {
-        System.out.println("Serviço (" + servico.getId() + "): " + servico.getName());
-        System.out.println("-------------------------");
-    }
+            System.out.println("Serviço (" + servico.getId() + "): " + servico.getName());
+            System.out.println("-------------------------");
+        }
         System.out.println("");
     }
 
+    // Método para listar todos os serviços
+    public void getAllAestheticProcedures(){
+        List<AestheticProcedures> proceduresDb = _aProcedureRepository.findAll();
+        System.out.println("Serviços:");
+        System.out.println("");
+        for (AestheticProcedures procedure : proceduresDb) {
+            System.out.println("Id: " + procedure.getId() + " | Nome: " + procedure.getName() + " | Preço: " + procedure.getPrice() + " | Descrição: " + procedure.getDescription());
+            System.out.println("-------------------------------------------------");
+        }
+    }
     // Método para gerar um relatório de procedimentos
     public void generateProceduresReport() {
         List<ProceduresPerformed> registrosDb = _pPerformedRepository.findAll();
@@ -110,7 +124,50 @@ public class MainSystemService {
         }
         System.out.println("");
     }
+    public void getProfile() {
+        User user = _userRepository.findById(1);
+        System.out.println("Id: " + user.getId() + " | Nome: " + user.getName() + " | Email: " + user.getEmail() + " | Senha: " + user.getPassword());
+    }
+    public void updateProfile(Scanner scanner) {
+        User user = _userRepository.findById(1);
+        System.out.println("Qual informação você deseja atualizar?");
+        System.out.println("1 - Nome");
+        System.out.println("2 - Email");
+        System.out.println("3 - Senha");
+        System.out.println("4 - Cancelar");
+        int opcao = scanner.nextInt();
+        scanner.nextLine();
 
+        switch (opcao) {
+            case 1:
+                System.out.print("Novo Nome: ");
+                String novoNome = scanner.nextLine();
+                user.setName(novoNome);
+                _userRepository.update(user);
+                System.out.println("Nome atualizado com sucesso.");
+                break;
+            case 2:
+                System.out.print("Novo Email: ");
+                String novoEmail = scanner.nextLine();
+                user.setEmail(novoEmail);
+                _userRepository.update(user);
+                System.out.println("Email atualizado com sucesso.");
+                break;
+            case 3:
+                System.out.print("Nova Senha: ");
+                String novaSenha = scanner.nextLine();
+                user.setPassword(novaSenha);
+                _userRepository.update(user);
+                System.out.println("Senha atualizada com sucesso.");
+                break;
+            case 4:
+                System.out.println("Operação de atualização cancelada.");
+                break;
+            default:
+                System.out.println("Opção inválida.");
+                break;
+        }
+    }
     // Método para calcular a receita mensal da clínica
     private double calcularReceitaMensal() {
         var registrosDb = _pPerformedRepository.findAll();
