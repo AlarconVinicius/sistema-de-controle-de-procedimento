@@ -5,7 +5,9 @@
 
 package Business.Test;
 
+import Auth.UserService;
 import Business.Services.MainSystemService;
+import Database.Models.User;
 import Database.Repositories.AestheticProceduresRepository;
 import Database.Repositories.ProceduresPerformedRepository;
 import Helpers.ConsoleUtils;
@@ -17,14 +19,18 @@ import java.util.Scanner;
  */
 public class MainSystemServiceFlowTest {
 public static void main(String[] args) {
+        User auth = new User();
         AestheticProceduresRepository aesProduceresRepository = new AestheticProceduresRepository();
         ProceduresPerformedRepository procePerformedRepository = new ProceduresPerformedRepository();
         MainSystemService sistema = new MainSystemService(aesProduceresRepository, procePerformedRepository);
+        UserService userService = new UserService(auth);
 
+        
         Scanner scanner = new Scanner(System.in);
+        
+        var logado = userService.authenticate(scanner);
 
-        while (true) {
-            ConsoleUtils.clearConsole();
+        while (logado) {
             System.out.println("");
             System.out.println("Menu");
             System.out.println("");
@@ -48,6 +54,7 @@ public static void main(String[] args) {
                     System.out.println("");
                     break;
                 case 3:
+                    ConsoleUtils.clearConsole();
                     System.out.println("");
                     sistema.gerarRelatorioProcedimentos();
                     System.out.println("");
@@ -58,14 +65,15 @@ public static void main(String[] args) {
                     System.out.println("Encerrando o programa.");
                     System.out.println("");
                     scanner.close();
-                    System.exit(0);
+                    userService.logout();
+                    logado = false;
+                    break;
                 default:
                     ConsoleUtils.clearConsole();
                     System.out.println("");
                     System.out.println("Opção inválida. Escolha uma opção válida.");
                     System.out.println("");
             }
-
         }
     }
 }

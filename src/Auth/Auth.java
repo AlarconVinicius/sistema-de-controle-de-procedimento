@@ -24,11 +24,10 @@ public abstract class Auth {
         }
         
         UserRepository userRepository = new UserRepository();
-        User user = userRepository.getByEmail(email);
-        if (user == null) {
-            System.out.println("Usuário não encontrado.");
+        if(!userExists(email)){
             return false;
         }
+        User user = userRepository.getByEmail(email);
         
         if(email.equals(user.getEmail()) && password.equals(user.getPassword())){
             System.out.println("Usuário logado.");
@@ -52,6 +51,16 @@ public abstract class Auth {
         resetTentativas();
     }
 
+    protected boolean userExists(String email) {
+        UserRepository userRepository = new UserRepository();
+        User user = userRepository.getByEmail(email);
+        if (user == null) {
+            System.out.println("Usuário não encontrado.");
+            return false;
+        }
+        return true;
+    }
+    
     protected final void resetTentativas() {
         attempts = 0;
         blocked = false;
