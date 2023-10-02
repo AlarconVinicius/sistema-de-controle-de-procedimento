@@ -56,7 +56,7 @@ public static void main(String[] args) {
                 case 3:
                     ConsoleUtils.clearConsole();
                     System.out.println("");
-                    sistema.gerarRelatorioProcedimentos();
+                    sistema.generateProceduresReport();
                     System.out.println("");
                     break;
                 case 4:

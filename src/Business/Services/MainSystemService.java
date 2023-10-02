@@ -96,7 +96,7 @@ public class MainSystemService {
     }
 
     // Método para gerar um relatório de procedimentos
-    public void gerarRelatorioProcedimentos() {
+    public void generateProceduresReport() {
         List<ProceduresPerformed> registrosDb = _pPerformedRepository.findAll();
         double receitaMensal = calcularReceitaMensal();
         System.out.println("");
@@ -105,7 +105,7 @@ public class MainSystemService {
         for (ProceduresPerformed registro : registrosDb) {
             System.out.println("Data: " + registro.getDate());
             System.out.println("Serviço: " + registro.getProcedure().getName());
-            System.out.println("Valor Recebido: " + registro.getAmountReceived());
+            System.out.println("Valor Recebido: " + String.format("%.2f", registro.getAmountReceived()));
             System.out.println("-------------------------");
         }
         System.out.println("");
