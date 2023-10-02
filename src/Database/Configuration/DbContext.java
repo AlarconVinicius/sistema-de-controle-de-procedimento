@@ -85,4 +85,41 @@ public class DbContext {
             }
         }
     }
+    public static void createUserTableAndDefaultUser() {
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            if (connection != null) {
+                String createUserTableSQL = "CREATE TABLE IF NOT EXISTS user ("
+                        + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                        + "name TEXT,"
+                        + "email TEXT UNIQUE,"
+                        + "password TEXT"
+                        + ");";
+                PreparedStatement createUserTableStatement = connection.prepareStatement(createUserTableSQL);
+                createUserTableStatement.execute();
+                
+                String checkUserExistsSQL = "SELECT id FROM user WHERE id = ?";
+                PreparedStatement checkUserExistsStatement = connection.prepareStatement(checkUserExistsSQL);
+                checkUserExistsStatement.setInt(1, 1);
+                ResultSet resultSet = checkUserExistsStatement.executeQuery();
+
+                if (!resultSet.next()) {
+                    String insertDefaultUserSQL = "INSERT INTO user (id, name, email, password) VALUES (?, ?, ?, ?)";
+                    PreparedStatement insertDefaultUserStatement = connection.prepareStatement(insertDefaultUserSQL);
+                    insertDefaultUserStatement.setInt(1, 1);
+                    insertDefaultUserStatement.setString(2, "Usuario Admin");
+                    insertDefaultUserStatement.setString(3, "admin@email.com");
+                    insertDefaultUserStatement.setString(4, "Admin@123");
+                    insertDefaultUserStatement.execute();
+                }
+
+//                System.out.println("Tabela 'user' criada com sucesso e usuário padrão inserido.");
+            }
+        } catch (SQLException e) {
+            System.err.println("Falha ao criar a tabela 'user' e inserir o usuário padrão: " + e.getMessage());
+        } finally {
+            closeConnection(connection);
+        }
+    }
 }
