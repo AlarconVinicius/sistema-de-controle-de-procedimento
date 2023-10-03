@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-package Business.Test;
+package Tests.Business;
 
 import Auth.UserService;
 import Business.Services.MainSystemService;
@@ -15,11 +15,19 @@ import Helpers.ConsoleUtils;
 import java.util.Scanner;
 
 /**
- *
+ * Classe para teste de fluxo do sistema principal.
+ * Esta classe demonstra um exemplo de como usar o sistema e interagir com ele.
+ * 
  * @author Alarcon Vinicius
  */
 public class MainSystemServiceFlowTest {
-public static void main(String[] args) {
+
+    /**
+     * Método principal da classe MainSystemServiceFlowTest.
+     *
+     * @param args Parâmetro não utilizado neste teste.
+     */
+    public static void main(String[] args) {
         User auth = new User();
         UserRepository userRepository = new UserRepository();
         AestheticProceduresRepository aesProduceresRepository = new AestheticProceduresRepository();

@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 package Business.Services;
 
 import Database.Models.AestheticProcedures;
@@ -15,21 +14,48 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
+ * Classe que fornece serviços principais para o sistema. Essa classe oferece
+ * funcionalidades para gerenciar procedimentos estéticos, relatórios, perfil do
+ * usuário e muito mais.
  *
  * @author Alarcon Vinicius
  */
 public class MainSystemService {
 
+    /**
+     * Repositório de procedimentos estéticos.
+     */
     private final AestheticProceduresRepository _aProcedureRepository;
+
+    /**
+     * Repositório de procedimentos realizados.
+     */
     private final ProceduresPerformedRepository _pPerformedRepository;
+
+    /**
+     * Repositório de usuários.
+     */
     private final UserRepository _userRepository;
+
+    /**
+     * Construtor para a classe MainSystemService.
+     *
+     * @param aProcedureRepository O repositório de procedimentos estéticos.
+     * @param pPerformedRepository O repositório de procedimentos realizados.
+     * @param userRepository O repositório de usuários.
+     */
     public MainSystemService(AestheticProceduresRepository aProcedureRepository, ProceduresPerformedRepository pPerformedRepository, UserRepository userRepository) {
         _aProcedureRepository = aProcedureRepository;
         _pPerformedRepository = pPerformedRepository;
         _userRepository = userRepository;
     }
 
-    // Método para retornar menu de cadastro de serviços disponíveis
+    /**
+     * Exibe o menu para criar um novo procedimento estético e o adiciona ao
+     * repositório.
+     *
+     * @param scanner O Scanner para entrada de dados.
+     */
     public void createAestheticProcedure(Scanner scanner) {
         System.out.println("");
         System.out.println("Cadastrar Serviço: ");
@@ -53,7 +79,12 @@ public class MainSystemService {
         _aProcedureRepository.create(new AestheticProcedures(nome, descricao, valor));
     }
 
-    // Método para retornar menu de cadastro de serviços disponíveis
+    /**
+     * Exibe o menu para criar um novo procedimento realizado e o adiciona ao
+     * repositório.
+     *
+     * @param scanner O Scanner para entrada de dados.
+     */
     public void createProcedurePerformed(Scanner scanner) {
         System.out.println("");
         System.out.println("Cadastrar Procedimento Realizado: ");
@@ -66,8 +97,8 @@ public class MainSystemService {
 
         System.out.println("");
 
-        if (escolhaServico >= 1 && escolhaServico <= _aProcedureRepository.findAll().size()) {
-            AestheticProcedures servicoEscolhido = _aProcedureRepository.findAll().get(escolhaServico - 1);
+        if (escolhaServico >= 1 && escolhaServico <= _aProcedureRepository.getAll().size()) {
+            AestheticProcedures servicoEscolhido = _aProcedureRepository.getAll().get(escolhaServico - 1);
 
             System.out.print("Data: ");
             String data = scanner.nextLine();
@@ -85,9 +116,11 @@ public class MainSystemService {
         }
     }
 
-    // Método para retornar menu de serviços disponíveis
+    /**
+     * Exibe o menu de serviços estéticos disponíveis.
+     */
     public void menuServicos() {
-        List<AestheticProcedures> servicosDb = _aProcedureRepository.findAll();
+        List<AestheticProcedures> servicosDb = _aProcedureRepository.getAll();
 
         System.out.println("");
         System.out.println("Serviços disponíveis: ");
@@ -99,9 +132,11 @@ public class MainSystemService {
         System.out.println("");
     }
 
-    // Método para listar todos os serviços
-    public void getAllAestheticProcedures(){
-        List<AestheticProcedures> proceduresDb = _aProcedureRepository.findAll();
+    /**
+     * Lista todos os procedimentos estéticos disponíveis.
+     */
+    public void getAllAestheticProcedures() {
+        List<AestheticProcedures> proceduresDb = _aProcedureRepository.getAll();
         System.out.println("Serviços:");
         System.out.println("");
         for (AestheticProcedures procedure : proceduresDb) {
@@ -109,9 +144,13 @@ public class MainSystemService {
             System.out.println("-------------------------------------------------");
         }
     }
-    // Método para gerar um relatório de procedimentos
+
+    /**
+     * Gera um relatório de procedimentos realizados, incluindo a receita
+     * mensal.
+     */
     public void generateProceduresReport() {
-        List<ProceduresPerformed> registrosDb = _pPerformedRepository.findAll();
+        List<ProceduresPerformed> registrosDb = _pPerformedRepository.getAll();
         double receitaMensal = calcularReceitaMensal();
         System.out.println("");
         System.out.println("Receita Mensal: R$" + receitaMensal);
@@ -124,12 +163,22 @@ public class MainSystemService {
         }
         System.out.println("");
     }
+
+    /**
+     * Obtém e exibe o perfil do usuário.
+     */
     public void getProfile() {
-        User user = _userRepository.findById(1);
+        User user = _userRepository.getById(1);
         System.out.println("Id: " + user.getId() + " | Nome: " + user.getName() + " | Email: " + user.getEmail() + " | Senha: " + user.getPassword());
     }
+
+    /**
+     * Exibe um menu para atualizar o perfil do usuário.
+     *
+     * @param scanner O Scanner para entrada de dados.
+     */
     public void updateProfile(Scanner scanner) {
-        User user = _userRepository.findById(1);
+        User user = _userRepository.getById(1);
         System.out.println("Qual informação você deseja atualizar?");
         System.out.println("1 - Nome");
         System.out.println("2 - Email");
@@ -168,9 +217,14 @@ public class MainSystemService {
                 break;
         }
     }
-    // Método para calcular a receita mensal da clínica
+
+    /**
+     * Método privado para calcular a receita mensal da clínica.
+     *
+     * @return A receita mensal calculada.
+     */
     private double calcularReceitaMensal() {
-        var registrosDb = _pPerformedRepository.findAll();
+        var registrosDb = _pPerformedRepository.getAll();
         double receita = 0.0;
         for (ProceduresPerformed registro : registrosDb) {
             receita += registro.getAmountReceived();

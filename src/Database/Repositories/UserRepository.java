@@ -2,13 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 package Database.Repositories;
-
-/**
- *
- * @author Alarcon Vinicius
- */
 
 import Business.Interfaces.Repositories.IBaseRepository;
 import Database.Configuration.DbContext;
@@ -20,10 +14,22 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserRepository implements IBaseRepository<User>{
+/**
+ * Repositório para operações relacionadas aos usuários no banco de dados.
+ * Implementa a interface IBaseRepository com o tipo User.
+ *
+ * @author Alarcon Vinicius
+ */
+public class UserRepository implements IBaseRepository<User> {
 
+    /**
+     * Obtém um usuário pelo seu ID.
+     *
+     * @param id O ID do usuário a ser encontrado.
+     * @return O usuário encontrado, ou null se não encontrado.
+     */
     @Override
-    public User findById(int id) {
+    public User getById(int id) {
         User user = null;
         Connection connection = null;
         try {
@@ -42,12 +48,19 @@ public class UserRepository implements IBaseRepository<User>{
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Falha ao executar o método 'findById': " + e.getMessage());
+            System.err.println("Falha ao executar o método 'getById': " + e.getMessage());
         } finally {
             DbContext.closeConnection(connection);
         }
         return user;
     }
+
+    /**
+     * Obtém um usuário pelo seu email.
+     *
+     * @param email O email do usuário a ser encontrado.
+     * @return O usuário encontrado, ou null se não encontrado.
+     */
     public User getByEmail(String email) {
         User user = null;
         Connection connection = null;
@@ -74,8 +87,13 @@ public class UserRepository implements IBaseRepository<User>{
         return user;
     }
 
+    /**
+     * Obtém uma lista de todos os usuários no banco de dados.
+     *
+     * @return Uma lista de usuários.
+     */
     @Override
-    public List<User> findAll() {
+    public List<User> getAll() {
         List<User> users = new ArrayList<>();
         Connection connection = null;
         try {
@@ -94,13 +112,18 @@ public class UserRepository implements IBaseRepository<User>{
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Falha ao executar o método 'findAll': " + e.getMessage());
+            System.err.println("Falha ao executar o método 'getAll': " + e.getMessage());
         } finally {
             DbContext.closeConnection(connection);
         }
         return users;
     }
 
+    /**
+     * Cria um novo usuário no banco de dados.
+     *
+     * @param user O usuário a ser criado.
+     */
     @Override
     public void create(User user) {
         Connection connection = null;
@@ -121,6 +144,11 @@ public class UserRepository implements IBaseRepository<User>{
         }
     }
 
+    /**
+     * Atualiza um usuário existente no banco de dados.
+     *
+     * @param user O usuário a ser atualizado.
+     */
     @Override
     public void update(User user) {
         Connection connection = null;
@@ -142,6 +170,11 @@ public class UserRepository implements IBaseRepository<User>{
         }
     }
 
+    /**
+     * Exclui um usuário pelo seu ID.
+     *
+     * @param id O ID do usuário a ser excluído.
+     */
     @Override
     public void delete(int id) {
         Connection connection = null;
@@ -160,4 +193,3 @@ public class UserRepository implements IBaseRepository<User>{
         }
     }
 }
-

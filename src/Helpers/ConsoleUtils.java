@@ -6,12 +6,15 @@
 package Helpers;
 
 /**
- *
+ * Classe de utilitário para operações relacionadas ao console.
+ * 
  * @author Alarcon Vinicius
  */
 public class ConsoleUtils {
 
-    // Método para limpar o terminal no Windows
+    /**
+     * Limpa o terminal do console.
+     */
     public static void clearConsole() {
         try {
             if (System.getProperty("os.name").contains("Windows")) {
@@ -22,6 +25,7 @@ public class ConsoleUtils {
                 new ProcessBuilder("clear").inheritIO().start().waitFor();
             }
         } catch (final Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 }

@@ -3,21 +3,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-package Database.Test;
+package Tests.Database;
 
 import Database.Configuration.DbContext;
-import Database.Models.AestheticProcedures;
-import Database.Models.ProceduresPerformed;
 import Database.Repositories.AestheticProceduresRepository;
 import Database.Repositories.ProceduresPerformedRepository;
 import Database.Repositories.UserRepository;
 
 
 /**
- *
+ * Classe de teste para verificar a conexão e operações no banco de dados.
+ * Esta classe cria tabelas no banco de dados, insere dados de exemplo e realiza consultas.
+ * 
  * @author Alarcon Vinicius
  */
 public class TestConnection {
+
+    /**
+     * Método principal da classe TestConnection.
+     *
+     * @param args Parâmetro não utilizado neste teste.
+     */
     public static void main(String[] args) {
         DbContext.getConnection();
         DbContext.createUserTableAndDefaultUser();
@@ -36,13 +42,13 @@ public class TestConnection {
 //        _procePerformedRepository.create(new ProceduresPerformed("10/01/2023", 2, 200));
 //        _procePerformedRepository.create(new ProceduresPerformed("11/01/2023", 3, 200));
         
-        var user = _userRepository.findAll();
+        var user = _userRepository.getAll();
         
-        var procedures = _aesProduceresRepository.findAll();
-        var procedure = _aesProduceresRepository.findById(1); 
+        var procedures = _aesProduceresRepository.getAll();
+        var procedure = _aesProduceresRepository.getById(1); 
         
-        var procesPerformed = _procePerformedRepository.findAll();
-        var procePerformed = _procePerformedRepository.findById(1);
+        var procesPerformed = _procePerformedRepository.getAll();
+        var procePerformed = _procePerformedRepository.getById(1);
         
         System.out.println("Users: " + user.size());
         System.out.println("---------------------------------");

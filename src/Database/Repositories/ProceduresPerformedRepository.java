@@ -13,13 +13,22 @@ import java.util.List;
 import java.sql.*;
 
 /**
+ * Repositório para operações relacionadas aos procedimentos realizados no banco
+ * de dados. Implementa a interface IBaseRepository com o tipo
+ * ProceduresPerformed.
  *
  * @author Alarcon Vinicius
  */
 public class ProceduresPerformedRepository implements IBaseRepository<ProceduresPerformed> {
 
+    /**
+     * Obtém um procedimento realizado pelo seu ID.
+     *
+     * @param id O ID do procedimento realizado a ser encontrado.
+     * @return O procedimento realizado encontrado, ou null se não encontrado.
+     */
     @Override
-    public ProceduresPerformed findById(int id) {
+    public ProceduresPerformed getById(int id) {
         ProceduresPerformed procedurePerformed = null;
         try {
             Connection connection = DbContext.getConnection();
@@ -43,13 +52,18 @@ public class ProceduresPerformedRepository implements IBaseRepository<Procedures
             }
             DbContext.closeConnection(connection);
         } catch (SQLException e) {
-            System.out.println("Falha ao executar o método 'findById':" + e.getMessage());
+            System.out.println("Falha ao executar o método 'getById':" + e.getMessage());
         }
         return procedurePerformed;
     }
 
+    /**
+     * Obtém uma lista de todos os procedimentos realizados no banco de dados.
+     *
+     * @return Uma lista de procedimentos realizados.
+     */
     @Override
-    public List<ProceduresPerformed> findAll() {
+    public List<ProceduresPerformed> getAll() {
         List<ProceduresPerformed> proceduresPerformed = new ArrayList<>();
         try {
             Connection connection = DbContext.getConnection();
@@ -73,11 +87,16 @@ public class ProceduresPerformedRepository implements IBaseRepository<Procedures
             }
             DbContext.closeConnection(connection);
         } catch (SQLException e) {
-            System.out.println("Falha ao executar o método 'findAll':" + e.getMessage());
+            System.out.println("Falha ao executar o método 'getAll()':" + e.getMessage());
         }
         return proceduresPerformed;
     }
 
+    /**
+     * Cria um novo procedimento realizado no banco de dados.
+     *
+     * @param entity O procedimento realizado a ser criado.
+     */
     @Override
     public void create(ProceduresPerformed entity) {
         // Verifica se o procedure_id existe antes de criar o registro
@@ -98,6 +117,11 @@ public class ProceduresPerformedRepository implements IBaseRepository<Procedures
         }
     }
 
+    /**
+     * Atualiza um procedimento realizado existente no banco de dados.
+     *
+     * @param entity O procedimento realizado a ser atualizado.
+     */
     @Override
     public void update(ProceduresPerformed entity) {
         // Verifica se o procedure_id existe antes de atualizar o registro
@@ -119,6 +143,11 @@ public class ProceduresPerformedRepository implements IBaseRepository<Procedures
         }
     }
 
+    /**
+     * Exclui um procedimento realizado pelo seu ID.
+     *
+     * @param id O ID do procedimento realizado a ser excluído.
+     */
     @Override
     public void delete(int id) {
         try {
@@ -132,10 +161,17 @@ public class ProceduresPerformedRepository implements IBaseRepository<Procedures
         }
     }
 
+    /**
+     * Verifica se um procedure_id é válido, ou seja, se corresponde a um
+     * procedimento estético existente.
+     *
+     * @param procedureId O ID do procedimento estético a ser verificado.
+     * @return true se o ID é válido, false caso contrário.
+     */
     private boolean isValidProcedureId(int procedureId) {
         AestheticProceduresRepository _repository = new AestheticProceduresRepository();
         try {
-            AestheticProcedures procedure = _repository.findById(procedureId);
+            AestheticProcedures procedure = _repository.getById(procedureId);
             return procedure != null;
         } catch (Exception e) {
             System.out.println("Falha ao verificar o procedure_id: " + e.getMessage());

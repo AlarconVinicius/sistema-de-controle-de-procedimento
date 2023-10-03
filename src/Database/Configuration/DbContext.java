@@ -2,36 +2,48 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 package Database.Configuration;
 
 import java.sql.*;
 
 /**
+ * Classe que fornece configurações e métodos de acesso ao banco de dados
+ * SQLite. Esta classe inclui métodos para obter uma conexão com o banco de
+ * dados, fechar a conexão e criar as tabelas necessárias.
  *
  * @author Alarcon Vinicius
  */
 public class DbContext {
 
+    /**
+     * Construtor padrão da classe DbContext.
+     */
     public DbContext() {
     }
 
-    public static Connection getConnection(){
+    /**
+     * Obtém uma conexão com o banco de dados SQLite.
+     *
+     * @return A conexão com o banco de dados.
+     */
+    public static Connection getConnection() {
         Connection connection;
         String url = "jdbc:sqlite:src\\Database\\sistema.db";
-        try
-        {
+        try {
             connection = DriverManager.getConnection(url);
 //            System.out.println("Conexão feita");
-        }
-        catch(SQLException e)
-        {
+        } catch (SQLException e) {
             System.err.println("Falha na conexão: " + e.getMessage());
             connection = null;
         }
         return connection;
     }
-    
+
+    /**
+     * Fecha uma conexão com o banco de dados.
+     *
+     * @param connection A conexão a ser fechada.
+     */
     public static void closeConnection(Connection connection) {
         if (connection != null) {
             try {
@@ -42,19 +54,23 @@ public class DbContext {
             }
         }
     }
-    
+
+    /**
+     * Cria a tabela 'tbl_aesthetic_procedures' no banco de dados, se ainda não
+     * existir.
+     */
     public static void createAestheticProceduresTable() {
         Connection connection = getConnection();
         if (connection != null) {
             try {
                 Statement statement = connection.createStatement();
                 statement.executeUpdate(
-                        "CREATE TABLE IF NOT EXISTS tbl_aesthetic_procedures (" +
-                                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                                "name TEXT," +
-                                "description TEXT," +
-                                "price REAL" +
-                                ");"
+                        "CREATE TABLE IF NOT EXISTS tbl_aesthetic_procedures ("
+                        + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                        + "name TEXT,"
+                        + "description TEXT,"
+                        + "price REAL"
+                        + ");"
                 );
 //                System.out.println("Tabela 'aesthetic_procedures' criada com sucesso.");
             } catch (SQLException e) {
@@ -64,18 +80,23 @@ public class DbContext {
             }
         }
     }
+
+    /**
+     * Cria a tabela 'tbl_procedures_performed' no banco de dados, se ainda não
+     * existir.
+     */
     public static void createProceduresPerformedTable() {
         Connection connection = getConnection();
         if (connection != null) {
             try {
                 Statement statement = connection.createStatement();
                 statement.executeUpdate(
-                        "CREATE TABLE IF NOT EXISTS tbl_procedures_performed (" +
-                                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                                "date TEXT," +
-                                "procedure_id INTEGER," +
-                                "amount_received REAL" +
-                                ");"
+                        "CREATE TABLE IF NOT EXISTS tbl_procedures_performed ("
+                        + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                        + "date TEXT,"
+                        + "procedure_id INTEGER,"
+                        + "amount_received REAL"
+                        + ");"
                 );
 //                System.out.println("Tabela 'tbl_procedures_performed' criada com sucesso.");
             } catch (SQLException e) {
@@ -85,6 +106,11 @@ public class DbContext {
             }
         }
     }
+
+    /**
+     * Cria a tabela 'user' no banco de dados e insere o usuário padrão, se
+     * ainda não existir.
+     */
     public static void createUserTableAndDefaultUser() {
         Connection connection = null;
         try {
@@ -98,7 +124,7 @@ public class DbContext {
                         + ");";
                 PreparedStatement createUserTableStatement = connection.prepareStatement(createUserTableSQL);
                 createUserTableStatement.execute();
-                
+
                 String checkUserExistsSQL = "SELECT id FROM user WHERE id = ?";
                 PreparedStatement checkUserExistsStatement = connection.prepareStatement(checkUserExistsSQL);
                 checkUserExistsStatement.setInt(1, 1);

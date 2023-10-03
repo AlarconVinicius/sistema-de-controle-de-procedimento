@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 package Database.Repositories;
 
 import Business.Interfaces.Repositories.IBaseRepository;
@@ -13,13 +12,22 @@ import java.util.List;
 import java.sql.*;
 
 /**
+ * Repositório para operações relacionadas aos procedimentos estéticos no banco
+ * de dados. Implementa a interface IBaseRepository com o tipo
+ * AestheticProcedures.
  *
  * @author Alarcon Vinicius
  */
 public class AestheticProceduresRepository implements IBaseRepository<AestheticProcedures> {
 
+    /**
+     * Obtém um procedimento estético pelo seu ID.
+     *
+     * @param id O ID do procedimento estético a ser encontrado.
+     * @return O procedimento estético encontrado, ou null se não encontrado.
+     */
     @Override
-    public AestheticProcedures findById(int id) {
+    public AestheticProcedures getById(int id) {
         AestheticProcedures aestheticProcedure = null;
         try {
             Connection connection = DbContext.getConnection();
@@ -35,18 +43,24 @@ public class AestheticProceduresRepository implements IBaseRepository<AestheticP
             }
             DbContext.closeConnection(connection);
         } catch (SQLException e) {
-            System.out.println("Falha ao executar o método 'findById':" + e.getMessage());
+            System.out.println("Falha ao executar o método 'getById':" + e.getMessage());
         }
         return aestheticProcedure;
     }
+
+    /**
+     * Obtém uma lista de todos os procedimentos estéticos no banco de dados.
+     *
+     * @return Uma lista de procedimentos estéticos.
+     */
     @Override
-    public List<AestheticProcedures> findAll() {
+    public List<AestheticProcedures> getAll() {
         List<AestheticProcedures> procedures = new ArrayList<>();
         try {
             Connection connection = DbContext.getConnection();
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM tbl_aesthetic_procedures");
             ResultSet resultSet = statement.executeQuery();
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 AestheticProcedures aestheticProcedure = new AestheticProcedures();
                 aestheticProcedure.setId(resultSet.getInt("id"));
                 aestheticProcedure.setName(resultSet.getString("name"));
@@ -55,14 +69,18 @@ public class AestheticProceduresRepository implements IBaseRepository<AestheticP
                 procedures.add(aestheticProcedure);
             }
             DbContext.closeConnection(connection);
-        }   
-        catch (SQLException e){
-            System.out.println("Falha ao executar o método 'findAll()" + e.getMessage());
+        } catch (SQLException e) {
+            System.out.println("Falha ao executar o método 'getAll()':" + e.getMessage());
             procedures = null;
         }
         return procedures;
     }
 
+    /**
+     * Cria um novo procedimento estético no banco de dados.
+     *
+     * @param entity O procedimento estético a ser criado.
+     */
     @Override
     public void create(AestheticProcedures entity) {
         try {
@@ -77,7 +95,12 @@ public class AestheticProceduresRepository implements IBaseRepository<AestheticP
             System.out.println("Falha ao executar o método 'create':" + e.getMessage());
         }
     }
-    
+
+    /**
+     * Atualiza um procedimento estético existente no banco de dados.
+     *
+     * @param entity O procedimento estético a ser atualizado.
+     */
     @Override
     public void update(AestheticProcedures entity) {
         try {
@@ -93,6 +116,12 @@ public class AestheticProceduresRepository implements IBaseRepository<AestheticP
             System.out.println("Falha ao executar o método 'update':" + e.getMessage());
         }
     }
+
+    /**
+     * Exclui um procedimento estético pelo seu ID.
+     *
+     * @param id O ID do procedimento estético a ser excluído.
+     */
     @Override
     public void delete(int id) {
         try {
