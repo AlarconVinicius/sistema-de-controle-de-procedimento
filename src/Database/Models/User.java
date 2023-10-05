@@ -55,6 +55,18 @@ public class User extends Auth {
     }
 
     /**
+     * Construtor que inicializa um objeto `User` com id, email e senha.
+     *
+     * @param id O identificador único do usuário.
+     * @param email O endereço de email do usuário.
+     * @param password A senha do usuário.
+     */
+    public User(int id, String email, String password) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+    }
+    /**
      * Construtor que inicializa um objeto `User` com um identificador único,
      * nome, email e senha.
      *
