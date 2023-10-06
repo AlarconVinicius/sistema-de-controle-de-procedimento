@@ -5,6 +5,7 @@
 package Views;
 
 import Controller.LoginController;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -84,9 +85,7 @@ public class LoginView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEmailActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
-        System.out.println(txtEmail.getText());
-        System.out.println(txtPassword.getText());
+        _controller.login();
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
@@ -161,6 +160,14 @@ public class LoginView extends javax.swing.JFrame {
         this.txtPassword = txtPassword;
     }
 
+    /**
+     * Exibe uma mensagem na tela.
+     *
+     * @param message Mensagem a ser exibida.
+     */
+    public void showMessage(String message){
+        JOptionPane.showMessageDialog(null, message);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
