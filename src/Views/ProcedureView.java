@@ -4,17 +4,24 @@
  */
 package Views;
 
+import Controller.AestheticProcedureController;
+import javax.swing.JTable;
+
 /**
  *
  * @author alarc
  */
 public class ProcedureView extends javax.swing.JFrame {
 
+    private final AestheticProcedureController _controller;
+
     /**
      * Creates new form ProcedureView
      */
     public ProcedureView() {
         initComponents();
+        _controller = new AestheticProcedureController(this);
+        initView();
     }
 
     /**
@@ -32,10 +39,10 @@ public class ProcedureView extends javax.swing.JFrame {
         txtPriceP = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableProcedures = new javax.swing.JTable();
         labelBackground = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelNameP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -54,7 +61,7 @@ public class ProcedureView extends javax.swing.JFrame {
         btnSave.setText("Salvar");
         getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 100, 80, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableProcedures.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"1", "Botox", "1000"},
                 {"2", "Preenchimento Labial", "800"},
@@ -65,7 +72,7 @@ public class ProcedureView extends javax.swing.JFrame {
                 "Id", "Procedimento", "Valor"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableProcedures);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 560, 290));
 
@@ -113,11 +120,25 @@ public class ProcedureView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelBackground;
     private javax.swing.JLabel labelNameP;
     private javax.swing.JLabel labelPrice;
+    private javax.swing.JTable tableProcedures;
     private javax.swing.JTextField txtNameP;
     private javax.swing.JTextField txtPriceP;
     // End of variables declaration//GEN-END:variables
+
+    private void initView() {
+        _controller.updateTable();
+    }
+
+    public JTable getTableProcedures() {
+        return tableProcedures;
+    }
+
+    public void setTableProcedures(JTable tableProcedures) {
+        this.tableProcedures = tableProcedures;
+    }
+    
+    
 }

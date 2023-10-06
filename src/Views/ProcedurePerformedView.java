@@ -4,17 +4,25 @@
  */
 package Views;
 
+import Controller.ProcedurePerformedController;
+import javax.swing.JComboBox;
+import javax.swing.JTable;
+
 /**
  *
  * @author alarc
  */
 public class ProcedurePerformedView extends javax.swing.JFrame {
 
+    private final ProcedurePerformedController _controller;
+
     /**
      * Creates new form ProcedurePerformedView
      */
     public ProcedurePerformedView() {
         initComponents();
+        _controller = new ProcedurePerformedController(this);
+        initView();
     }
 
     /**
@@ -34,10 +42,10 @@ public class ProcedurePerformedView extends javax.swing.JFrame {
         txtAmountReceivedP = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableProcedurePerformed = new javax.swing.JTable();
         labelBackground = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelProcedureP.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -45,7 +53,6 @@ public class ProcedurePerformedView extends javax.swing.JFrame {
         labelProcedureP.setText("Procedimento: ");
         getContentPane().add(labelProcedureP, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, -1, 30));
 
-        comboBoxProcedure.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(comboBoxProcedure, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 210, 30));
 
         labelDate.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -69,18 +76,15 @@ public class ProcedurePerformedView extends javax.swing.JFrame {
         });
         getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 100, 80, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableProcedurePerformed.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "Botox", "04/03/2023", "1000"},
-                {"2", "Preenchimento Labial", "04/03/2023", "800"},
-                {null, null, null, null},
-                {null, null, null, ""}
+                {null, null, null, null, ""}
             },
             new String [] {
-                "Id", "Procedimento", "Data", "Valor Recebido"
+                "Id", "Procedimento", "Data", "Valor Recebido", "Receita Total"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableProcedurePerformed);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 560, 290));
 
@@ -133,12 +137,35 @@ public class ProcedurePerformedView extends javax.swing.JFrame {
     private javax.swing.JButton btnSave;
     private javax.swing.JComboBox<String> comboBoxProcedure;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelAmountReceived;
     private javax.swing.JLabel labelBackground;
     private javax.swing.JLabel labelDate;
     private javax.swing.JLabel labelProcedureP;
+    private javax.swing.JTable tableProcedurePerformed;
     private javax.swing.JTextField txtAmountReceivedP;
     private javax.swing.JTextField txtDateP;
     // End of variables declaration//GEN-END:variables
+
+    private void initView() {
+        _controller.updateTable();
+        _controller.updateComboBox();
+    }
+
+    public JComboBox<String> getComboBoxProcedure() {
+        return comboBoxProcedure;
+    }
+
+    public void setComboBoxProcedure(JComboBox<String> comboBoxProcedure) {
+        this.comboBoxProcedure = comboBoxProcedure;
+    }
+
+    public JTable getTableProcedurePerformed() {
+        return tableProcedurePerformed;
+    }
+
+    public void setTableProcedurePerformed(JTable tableProcedurePerformed) {
+        this.tableProcedurePerformed = tableProcedurePerformed;
+    }
+    
+    
 }

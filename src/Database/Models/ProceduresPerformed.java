@@ -136,6 +136,15 @@ public class ProceduresPerformed {
     public String getDate() {
         return date;
     }
+    
+    /**
+     * Obtém a data formatadaa em dd/MM/yyyy em que o procedimento foi realizado.
+     * 
+     * @return A data em que o procedimento foi realizado.
+     */
+//    public String getFormattedDate() {
+//        return new SimpleDateFormat("dd/MM/yyyy").format(date);
+//    }
 
      /**
      * Define a data em que o procedimento foi realizado.

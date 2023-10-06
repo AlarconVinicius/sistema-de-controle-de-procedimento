@@ -145,12 +145,7 @@ public class AestheticProcedures {
      */
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Id = ").append(this.id).append(", ")
-            .append("Name = ").append(this.name).append(", ")
-            .append("Description = ").append(this.description).append(", ")
-            .append("Price = ").append(this.price);
-        return sb.toString();
+        return getName();
     }
 
     

@@ -4,17 +4,22 @@
  */
 package Views;
 
+import Controller.MainMenuController;
+
 /**
  *
  * @author alarc
  */
 public class MainMenuView extends javax.swing.JFrame {
 
+    private final MainMenuController _controller;
+
     /**
      * Creates new form MainMenuView
      */
     public MainMenuView() {
         initComponents();
+        _controller = new MainMenuController(this);
     }
 
     /**
@@ -28,22 +33,37 @@ public class MainMenuView extends javax.swing.JFrame {
 
         labelBackground = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        menuProcedures = new javax.swing.JMenu();
-        menuProcePerformed = new javax.swing.JMenu();
-        menuProfile = new javax.swing.JMenu();
+        mainMenu = new javax.swing.JMenu();
+        menuProcedures = new javax.swing.JMenuItem();
+        menuProcePerformed = new javax.swing.JMenuItem();
+        menuProfile = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         labelBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Views/Images/Menu.png"))); // NOI18N
 
+        mainMenu.setText("Menu");
+
         menuProcedures.setText("Procedimentos");
-        jMenuBar1.add(menuProcedures);
+        menuProcedures.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuProceduresActionPerformed(evt);
+            }
+        });
+        mainMenu.add(menuProcedures);
 
         menuProcePerformed.setText("Procedimentos Realizados");
-        jMenuBar1.add(menuProcePerformed);
+        menuProcePerformed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuProcePerformedActionPerformed(evt);
+            }
+        });
+        mainMenu.add(menuProcePerformed);
 
         menuProfile.setText("Perfil");
-        jMenuBar1.add(menuProfile);
+        mainMenu.add(menuProfile);
+
+        jMenuBar1.add(mainMenu);
 
         setJMenuBar(jMenuBar1);
 
@@ -60,6 +80,14 @@ public class MainMenuView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void menuProceduresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuProceduresActionPerformed
+        _controller.navigateToProcedures();
+    }//GEN-LAST:event_menuProceduresActionPerformed
+
+    private void menuProcePerformedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuProcePerformedActionPerformed
+        _controller.navigateToProceduresPerformed();
+    }//GEN-LAST:event_menuProcePerformedActionPerformed
 
     /**
      * @param args the command line arguments
@@ -99,8 +127,9 @@ public class MainMenuView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel labelBackground;
-    private javax.swing.JMenu menuProcePerformed;
-    private javax.swing.JMenu menuProcedures;
-    private javax.swing.JMenu menuProfile;
+    private javax.swing.JMenu mainMenu;
+    private javax.swing.JMenuItem menuProcePerformed;
+    private javax.swing.JMenuItem menuProcedures;
+    private javax.swing.JMenuItem menuProfile;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,20 +4,33 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="menuProcedures">
+        <Menu class="javax.swing.JMenu" name="mainMenu">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Procedimentos"/>
+            <Property name="text" type="java.lang.String" value="Menu"/>
           </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="menuProcePerformed">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Procedimentos Realizados"/>
-          </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="menuProfile">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Perfil"/>
-          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="menuProcedures">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Procedimentos"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuProceduresActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuProcePerformed">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Procedimentos Realizados"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuProcePerformedActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuProfile">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Perfil"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
       </SubComponents>
     </Menu>
