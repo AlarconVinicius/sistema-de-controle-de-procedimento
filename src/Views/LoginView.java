@@ -5,6 +5,7 @@
 package Views;
 
 import Controller.LoginController;
+import Database.Configuration.DbContext;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -22,6 +23,11 @@ public class LoginView extends javax.swing.JFrame {
      */
     public LoginView() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        DbContext.getConnection();
+        DbContext.createUserTableAndDefaultUser();
+        DbContext.createAestheticProceduresTable();
+        DbContext.createProceduresPerformedTable();
         _controller = new LoginController(this);
     }
 
@@ -43,6 +49,7 @@ public class LoginView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelEmail.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -56,6 +63,11 @@ public class LoginView extends javax.swing.JFrame {
                 txtEmailActionPerformed(evt);
             }
         });
+        txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtEmailKeyPressed(evt);
+            }
+        });
         getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 240, 30));
 
         labelPassword.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -64,6 +76,11 @@ public class LoginView extends javax.swing.JFrame {
         getContentPane().add(labelPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 52, -1));
 
         txtPassword.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyPressed(evt);
+            }
+        });
         getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 240, 30));
 
         btnLogin.setText("Entrar");
@@ -72,9 +89,19 @@ public class LoginView extends javax.swing.JFrame {
                 btnLoginActionPerformed(evt);
             }
         });
+        btnLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnLoginKeyPressed(evt);
+            }
+        });
         getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 113, -1));
 
         labelBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Views/Images/Login.png"))); // NOI18N
+        labelBackground.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                labelBackgroundKeyPressed(evt);
+            }
+        });
         getContentPane().add(labelBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
@@ -87,6 +114,28 @@ public class LoginView extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         _controller.login();
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void btnLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnLoginKeyPressed
+        if (evt.getKeyCode() == evt.VK_ENTER) {
+            _controller.login();
+        }
+    }//GEN-LAST:event_btnLoginKeyPressed
+
+    private void labelBackgroundKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_labelBackgroundKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelBackgroundKeyPressed
+
+    private void txtEmailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyPressed
+        if (evt.getKeyCode() == evt.VK_ENTER) {
+            _controller.login();
+        }
+    }//GEN-LAST:event_txtEmailKeyPressed
+
+    private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
+        if (evt.getKeyCode() == evt.VK_ENTER) {
+            _controller.login();
+        }
+    }//GEN-LAST:event_txtPasswordKeyPressed
 
     /**
      * @param args the command line arguments
@@ -165,7 +214,7 @@ public class LoginView extends javax.swing.JFrame {
      *
      * @param message Mensagem a ser exibida.
      */
-    public void showMessage(String message){
+    public void showMessage(String message) {
         JOptionPane.showMessageDialog(null, message);
     }
 
