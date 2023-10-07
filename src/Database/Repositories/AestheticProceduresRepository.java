@@ -6,7 +6,7 @@ package Database.Repositories;
 
 import Business.Interfaces.Repositories.IBaseRepository;
 import Database.Configuration.DbContext;
-import Database.Models.AestheticProcedures;
+import Database.Models.AestheticProcedure;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
@@ -18,7 +18,7 @@ import java.sql.*;
  *
  * @author Alarcon Vinicius
  */
-public class AestheticProceduresRepository implements IBaseRepository<AestheticProcedures> {
+public class AestheticProceduresRepository implements IBaseRepository<AestheticProcedure> {
 
     /**
      * Obtém um procedimento estético pelo seu ID.
@@ -27,18 +27,17 @@ public class AestheticProceduresRepository implements IBaseRepository<AestheticP
      * @return O procedimento estético encontrado, ou null se não encontrado.
      */
     @Override
-    public AestheticProcedures getById(int id) {
-        AestheticProcedures aestheticProcedure = null;
+    public AestheticProcedure getById(int id) {
+        AestheticProcedure aestheticProcedure = null;
         try {
             Connection connection = DbContext.getConnection();
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM tbl_aesthetic_procedures WHERE id = ?");
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                aestheticProcedure = new AestheticProcedures();
+                aestheticProcedure = new AestheticProcedure();
                 aestheticProcedure.setId(resultSet.getInt("id"));
                 aestheticProcedure.setName(resultSet.getString("name"));
-                aestheticProcedure.setDescription(resultSet.getString("description"));
                 aestheticProcedure.setPrice(resultSet.getDouble("price"));
             }
             DbContext.closeConnection(connection);
@@ -54,17 +53,16 @@ public class AestheticProceduresRepository implements IBaseRepository<AestheticP
      * @return Uma lista de procedimentos estéticos.
      */
     @Override
-    public List<AestheticProcedures> getAll() {
-        List<AestheticProcedures> procedures = new ArrayList<>();
+    public List<AestheticProcedure> getAll() {
+        List<AestheticProcedure> procedures = new ArrayList<>();
         try {
             Connection connection = DbContext.getConnection();
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM tbl_aesthetic_procedures");
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                AestheticProcedures aestheticProcedure = new AestheticProcedures();
+                AestheticProcedure aestheticProcedure = new AestheticProcedure();
                 aestheticProcedure.setId(resultSet.getInt("id"));
                 aestheticProcedure.setName(resultSet.getString("name"));
-                aestheticProcedure.setDescription(resultSet.getString("description"));
                 aestheticProcedure.setPrice(resultSet.getDouble("price"));
                 procedures.add(aestheticProcedure);
             }
@@ -82,13 +80,12 @@ public class AestheticProceduresRepository implements IBaseRepository<AestheticP
      * @param entity O procedimento estético a ser criado.
      */
     @Override
-    public void create(AestheticProcedures entity) {
+    public void create(AestheticProcedure entity) {
         try {
             Connection connection = DbContext.getConnection();
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO tbl_aesthetic_procedures (name, description, price) VALUES (?, ?, ?)");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO tbl_aesthetic_procedures (name, price) VALUES (?, ?)");
             statement.setString(1, entity.getName());
-            statement.setString(2, entity.getDescription());
-            statement.setDouble(3, entity.getPrice());
+            statement.setDouble(2, entity.getPrice());
             statement.executeUpdate();
             DbContext.closeConnection(connection);
         } catch (SQLException e) {
@@ -102,14 +99,13 @@ public class AestheticProceduresRepository implements IBaseRepository<AestheticP
      * @param entity O procedimento estético a ser atualizado.
      */
     @Override
-    public void update(AestheticProcedures entity) {
+    public void update(AestheticProcedure entity) {
         try {
             Connection connection = DbContext.getConnection();
-            PreparedStatement statement = connection.prepareStatement("UPDATE tbl_aesthetic_procedures SET name = ?, description = ?, price = ? WHERE id = ?");
+            PreparedStatement statement = connection.prepareStatement("UPDATE tbl_aesthetic_procedures SET name = ?, price = ? WHERE id = ?");
             statement.setString(1, entity.getName());
-            statement.setString(2, entity.getDescription());
-            statement.setDouble(3, entity.getPrice());
-            statement.setInt(4, entity.getId());
+            statement.setDouble(2, entity.getPrice());
+            statement.setInt(3, entity.getId());
             statement.executeUpdate();
             DbContext.closeConnection(connection);
         } catch (SQLException e) {

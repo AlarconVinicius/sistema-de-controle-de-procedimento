@@ -28,7 +28,7 @@ public class DbContext {
      */
     public static Connection getConnection() {
         Connection connection;
-        String url = "jdbc:sqlite:src\\Database\\sistema.db";
+        String url = "jdbc:sqlite:sistema.db";
         try {
             connection = DriverManager.getConnection(url);
 //            System.out.println("Conexão feita");
@@ -68,7 +68,6 @@ public class DbContext {
                         "CREATE TABLE IF NOT EXISTS tbl_aesthetic_procedures ("
                         + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                         + "name TEXT,"
-                        + "description TEXT,"
                         + "price REAL"
                         + ");"
                 );

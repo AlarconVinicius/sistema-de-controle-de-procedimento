@@ -13,7 +13,7 @@ package Database.Models;
  * 
  * @author Alarcon Vinicius
  */
-public class ProceduresPerformed {
+public class ProcedurePerformed {
 
     /**
      * O identificador único do procedimento realizado.
@@ -39,12 +39,12 @@ public class ProceduresPerformed {
      * Uma referência ao procedimento estético associado a este procedimento realizado.
      * O campo é marcado como transient para não ser serializado.
      */
-    private transient AestheticProcedures procedure;
+    private transient AestheticProcedure procedure;
 
     /**
      * Construtor padrão da classe `ProceduresPerformed`.
      */
-    public ProceduresPerformed() {
+    public ProcedurePerformed() {
     }
 
     /**
@@ -54,7 +54,7 @@ public class ProceduresPerformed {
      * @param procedure_id O ID do procedimento associado a este procedimento realizado.
      * @param amountReceived O valor recebido pelo procedimento realizado.
      */
-    public ProceduresPerformed(String date, int procedure_id, double amountReceived) {
+    public ProcedurePerformed(String date, int procedure_id, double amountReceived) {
         this.date = date;
         this.procedure_id = procedure_id;
         this.amountReceived = amountReceived;
@@ -68,7 +68,7 @@ public class ProceduresPerformed {
      * @param procedure_id O ID do procedimento associado a este procedimento realizado.
      * @param amountReceived O valor recebido pelo procedimento realizado.
      */
-    public ProceduresPerformed(int id, String date, int procedure_id, double amountReceived) {
+    public ProcedurePerformed(int id, String date, int procedure_id, double amountReceived) {
         this.id = id;
         this.date = date;
         this.procedure_id = procedure_id;
@@ -84,7 +84,7 @@ public class ProceduresPerformed {
      * @param amountReceived O valor recebido pelo procedimento realizado.
      * @param procedure O procedimento estético associado a este procedimento realizado.
      */
-    public ProceduresPerformed(int id, String date, int procedure_id, double amountReceived, AestheticProcedures procedure) {
+    public ProcedurePerformed(int id, String date, int procedure_id, double amountReceived, AestheticProcedure procedure) {
         this.id = id;
         this.date = date;
         this.procedure_id = procedure_id;
@@ -97,7 +97,7 @@ public class ProceduresPerformed {
      * 
      * @return O procedimento estético associado.
      */
-    public AestheticProcedures getProcedure() {
+    public AestheticProcedure getProcedure() {
         return procedure;
     }
 
@@ -106,7 +106,7 @@ public class ProceduresPerformed {
      * 
      * @param procedure O procedimento estético a ser associado.
      */
-    public void setProcedure(AestheticProcedures procedure) {
+    public void setProcedure(AestheticProcedure procedure) {
         this.procedure = procedure;
     }
 

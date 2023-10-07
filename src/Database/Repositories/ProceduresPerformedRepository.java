@@ -6,8 +6,8 @@ package Database.Repositories;
 
 import Business.Interfaces.Repositories.IBaseRepository;
 import Database.Configuration.DbContext;
-import Database.Models.AestheticProcedures;
-import Database.Models.ProceduresPerformed;
+import Database.Models.AestheticProcedure;
+import Database.Models.ProcedurePerformed;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
@@ -19,7 +19,7 @@ import java.sql.*;
  *
  * @author Alarcon Vinicius
  */
-public class ProceduresPerformedRepository implements IBaseRepository<ProceduresPerformed> {
+public class ProceduresPerformedRepository implements IBaseRepository<ProcedurePerformed> {
 
     /**
      * Obtém um procedimento realizado pelo seu ID.
@@ -28,11 +28,11 @@ public class ProceduresPerformedRepository implements IBaseRepository<Procedures
      * @return O procedimento realizado encontrado, ou null se não encontrado.
      */
     @Override
-    public ProceduresPerformed getById(int id) {
-        ProceduresPerformed procedurePerformed = null;
+    public ProcedurePerformed getById(int id) {
+        ProcedurePerformed procedurePerformed = null;
         try {
             Connection connection = DbContext.getConnection();
-            String query = "SELECT pp.id, pp.date, pp.amount_received, pp.procedure_id, ap.name, ap.description, ap.price "
+            String query = "SELECT pp.id, pp.date, pp.amount_received, pp.procedure_id, ap.name, ap.price "
                     + "FROM tbl_procedures_performed pp "
                     + "JOIN tbl_aesthetic_procedures ap ON pp.procedure_id = ap.id "
                     + "WHERE pp.id = ?";
@@ -44,11 +44,10 @@ public class ProceduresPerformedRepository implements IBaseRepository<Procedures
                 Double amountReceived = resultSet.getDouble("amount_received");
                 int procedureId = resultSet.getInt("procedure_id");
                 String procedureName = resultSet.getString("name");
-                String procedureDescription = resultSet.getString("description");
                 double procedurePrice = resultSet.getDouble("price");
 
                 // Mapear os dados para a classe ProceduresPerformed
-                procedurePerformed = new ProceduresPerformed(id, date, procedureId, amountReceived, new AestheticProcedures(procedureId, procedureName, procedureDescription, procedurePrice));
+                procedurePerformed = new ProcedurePerformed(id, date, procedureId, amountReceived, new AestheticProcedure(procedureId, procedureName, procedurePrice));
             }
             DbContext.closeConnection(connection);
         } catch (SQLException e) {
@@ -63,11 +62,11 @@ public class ProceduresPerformedRepository implements IBaseRepository<Procedures
      * @return Uma lista de procedimentos realizados.
      */
     @Override
-    public List<ProceduresPerformed> getAll() {
-        List<ProceduresPerformed> proceduresPerformed = new ArrayList<>();
+    public List<ProcedurePerformed> getAll() {
+        List<ProcedurePerformed> proceduresPerformed = new ArrayList<>();
         try {
             Connection connection = DbContext.getConnection();
-            String query = "SELECT pp.id, pp.date, pp.amount_received, pp.procedure_id, ap.name, ap.description, ap.price "
+            String query = "SELECT pp.id, pp.date, pp.amount_received, pp.procedure_id, ap.name, ap.price "
                     + "FROM tbl_procedures_performed pp "
                     + "JOIN tbl_aesthetic_procedures ap ON pp.procedure_id = ap.id";
             PreparedStatement statement = connection.prepareStatement(query);
@@ -78,11 +77,10 @@ public class ProceduresPerformedRepository implements IBaseRepository<Procedures
                 Double amountReceived = resultSet.getDouble("amount_received");
                 int procedureId = resultSet.getInt("procedure_id");
                 String procedureName = resultSet.getString("name");
-                String procedureDescription = resultSet.getString("description");
                 double procedurePrice = resultSet.getDouble("price");
 
                 // Mapear os dados para a classe ProceduresPerformed
-                ProceduresPerformed procedurePerformed = new ProceduresPerformed(id, date, procedureId, amountReceived, new AestheticProcedures(procedureId, procedureName, procedureDescription, procedurePrice));
+                ProcedurePerformed procedurePerformed = new ProcedurePerformed(id, date, procedureId, amountReceived, new AestheticProcedure(procedureId, procedureName, procedurePrice));
                 proceduresPerformed.add(procedurePerformed);
             }
             DbContext.closeConnection(connection);
@@ -98,7 +96,7 @@ public class ProceduresPerformedRepository implements IBaseRepository<Procedures
      * @param entity O procedimento realizado a ser criado.
      */
     @Override
-    public void create(ProceduresPerformed entity) {
+    public void create(ProcedurePerformed entity) {
         // Verifica se o procedure_id existe antes de criar o registro
         if (isValidProcedureId(entity.getProcedure_id())) {
             try {
@@ -123,7 +121,7 @@ public class ProceduresPerformedRepository implements IBaseRepository<Procedures
      * @param entity O procedimento realizado a ser atualizado.
      */
     @Override
-    public void update(ProceduresPerformed entity) {
+    public void update(ProcedurePerformed entity) {
         // Verifica se o procedure_id existe antes de atualizar o registro
         if (isValidProcedureId(entity.getProcedure_id())) {
             try {
@@ -171,7 +169,7 @@ public class ProceduresPerformedRepository implements IBaseRepository<Procedures
     private boolean isValidProcedureId(int procedureId) {
         AestheticProceduresRepository _repository = new AestheticProceduresRepository();
         try {
-            AestheticProcedures procedure = _repository.getById(procedureId);
+            AestheticProcedure procedure = _repository.getById(procedureId);
             return procedure != null;
         } catch (Exception e) {
             System.out.println("Falha ao verificar o procedure_id: " + e.getMessage());

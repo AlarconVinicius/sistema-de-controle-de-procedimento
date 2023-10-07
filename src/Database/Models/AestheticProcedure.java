@@ -10,7 +10,7 @@ package Database.Models;
  * 
  * @author Alarcon Vinicius
  */
-public class AestheticProcedures {
+public class AestheticProcedure {
 
     /**
      * O identificador único do procedimento estético.
@@ -22,11 +22,6 @@ public class AestheticProcedures {
      */
     private String name;
 
-    /**
-     * A descrição detalhada do procedimento estético.
-     */
-    private String description;
-
    /**
      * O preço do procedimento estético.
      */
@@ -35,19 +30,17 @@ public class AestheticProcedures {
     /**
      * Construtor padrão da classe `AestheticProcedures`.
      */
-    public AestheticProcedures() {
+    public AestheticProcedure() {
     }
 
     /**
      * Construtor que inicializa um objeto `AestheticProcedures` com nome, descrição e preço.
      * 
      * @param name O nome do procedimento estético.
-     * @param description A descrição detalhada do procedimento estético.
      * @param price O preço do procedimento estético.
      */
-    public AestheticProcedures(String name, String description, double price) {
+    public AestheticProcedure(String name, double price) {
         this.name = name;
-        this.description = description;
         this.price = price;
     }
 
@@ -56,13 +49,11 @@ public class AestheticProcedures {
      * 
      * @param id O identificador único do procedimento estético.
      * @param name O nome do procedimento estético.
-     * @param description A descrição detalhada do procedimento estético.
      * @param price O preço do procedimento estético.
      */
-    public AestheticProcedures(int id, String name, String description, double price) {
+    public AestheticProcedure(int id, String name, double price) {
         this.id = id;
         this.name = name;
-        this.description = description;
         this.price = price;
     }
 
@@ -100,24 +91,6 @@ public class AestheticProcedures {
      */
     public void setName(String name) {
         this.name = name;
-    }
-
-    /**
-     * Obtém a descrição detalhada do procedimento estético.
-     * 
-     * @return A descrição detalhada do procedimento estético.
-     */
-    public String getDescription() {
-        return description;
-    }
-
-     /**
-     * Define a descrição detalhada do procedimento estético.
-     * 
-     * @param description A descrição detalhada do procedimento estético.
-     */
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     /**
