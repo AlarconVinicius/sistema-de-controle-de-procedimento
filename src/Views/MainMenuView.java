@@ -19,6 +19,7 @@ public class MainMenuView extends javax.swing.JFrame {
      */
     public MainMenuView() {
         initComponents();
+        this.setLocationRelativeTo(null);
         _controller = new MainMenuController(this);
     }
 
@@ -37,12 +38,19 @@ public class MainMenuView extends javax.swing.JFrame {
         menuProcedures = new javax.swing.JMenuItem();
         menuProcePerformed = new javax.swing.JMenuItem();
         menuProfile = new javax.swing.JMenuItem();
+        menuSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         labelBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Views/Images/Menu.png"))); // NOI18N
 
         mainMenu.setText("Menu");
+        mainMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainMenuActionPerformed(evt);
+            }
+        });
 
         menuProcedures.setText("Procedimentos");
         menuProcedures.addActionListener(new java.awt.event.ActionListener() {
@@ -61,7 +69,20 @@ public class MainMenuView extends javax.swing.JFrame {
         mainMenu.add(menuProcePerformed);
 
         menuProfile.setText("Perfil");
+        menuProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuProfileActionPerformed(evt);
+            }
+        });
         mainMenu.add(menuProfile);
+
+        menuSair.setText("Sair");
+        menuSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuSairActionPerformed(evt);
+            }
+        });
+        mainMenu.add(menuSair);
 
         jMenuBar1.add(mainMenu);
 
@@ -88,6 +109,18 @@ public class MainMenuView extends javax.swing.JFrame {
     private void menuProcePerformedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuProcePerformedActionPerformed
         _controller.navigateToProceduresPerformed();
     }//GEN-LAST:event_menuProcePerformedActionPerformed
+
+    private void mainMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mainMenuActionPerformed
+
+    private void menuProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuProfileActionPerformed
+        _controller.navigateToProfile();
+    }//GEN-LAST:event_menuProfileActionPerformed
+
+    private void menuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSairActionPerformed
+        _controller.navigateToLogin();
+    }//GEN-LAST:event_menuSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -131,5 +164,6 @@ public class MainMenuView extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuProcePerformed;
     private javax.swing.JMenuItem menuProcedures;
     private javax.swing.JMenuItem menuProfile;
+    private javax.swing.JMenuItem menuSair;
     // End of variables declaration//GEN-END:variables
 }

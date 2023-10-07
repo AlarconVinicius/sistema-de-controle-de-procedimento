@@ -8,7 +8,9 @@ package Controller;
 import Controller.Helper.ProcedurePerformedViewHelper;
 import Views.MainMenuView;
 import Views.ProcedurePerformedView;
-import Views.ProcedureView;
+import Views.AestheticProcedureView;
+import Views.LoginView;
+import Views.ProfileView;
 
 /**
  *
@@ -26,13 +28,24 @@ public class MainMenuController {
     }
     
     public void navigateToProcedures(){
-        ProcedureView procedure = new ProcedureView();
+        AestheticProcedureView procedure = new AestheticProcedureView();
         procedure.setVisible(true);
     }
     
     public void navigateToProceduresPerformed(){
         ProcedurePerformedView procedurePerformed = new ProcedurePerformedView();
         procedurePerformed.setVisible(true);
+    }
+
+    public void navigateToProfile() {
+        ProfileView profile = new ProfileView();
+        profile.setVisible(true);
+    }
+
+    public void navigateToLogin() {
+        LoginView login = new LoginView();
+        _view.dispose();
+        login.setVisible(true);
     }
     
 }
