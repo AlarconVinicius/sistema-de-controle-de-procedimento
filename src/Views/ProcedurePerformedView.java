@@ -6,7 +6,9 @@ package Views;
 
 import Controller.ProcedurePerformedController;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -34,6 +36,7 @@ public class ProcedurePerformedView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtId = new javax.swing.JTextField();
         labelProcedureP = new javax.swing.JLabel();
         comboBoxProcedure = new javax.swing.JComboBox<>();
         labelDate = new javax.swing.JLabel();
@@ -41,30 +44,57 @@ public class ProcedurePerformedView extends javax.swing.JFrame {
         labelAmountReceived = new javax.swing.JLabel();
         txtAmountReceivedP = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableProcedurePerformed = new javax.swing.JTable();
         labelBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtId.setEditable(false);
+        txtId.setText("jTextField1");
+        txtId.setUI(null);
+        txtId.setActionCommand("<Not Set>");
+        txtId.setFocusable(false);
+        getContentPane().add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, -1, -1));
 
         labelProcedureP.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelProcedureP.setForeground(new java.awt.Color(255, 255, 255));
         labelProcedureP.setText("Procedimento: ");
         getContentPane().add(labelProcedureP, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, -1, 30));
 
+        comboBoxProcedure.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboBoxProcedureItemStateChanged(evt);
+            }
+        });
         getContentPane().add(comboBoxProcedure, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 210, 30));
 
         labelDate.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelDate.setForeground(new java.awt.Color(255, 255, 255));
         labelDate.setText("Data:");
         getContentPane().add(labelDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 50, 40, 30));
-        getContentPane().add(txtDateP, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 50, 150, 30));
+
+        txtDateP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDatePActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtDateP, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, 170, 30));
 
         labelAmountReceived.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelAmountReceived.setForeground(new java.awt.Color(255, 255, 255));
         labelAmountReceived.setText("Valor Recebido: ");
         getContentPane().add(labelAmountReceived, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 100, 30));
+
+        txtAmountReceivedP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAmountReceivedPActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtAmountReceivedP, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 210, 30));
 
         btnSave.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -74,7 +104,25 @@ public class ProcedurePerformedView extends javax.swing.JFrame {
                 btnSaveActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 100, 80, -1));
+        getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, 170, -1));
+
+        btnUpdate.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnUpdate.setText("Atualizar");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 120, -1, -1));
+
+        btnDelete.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnDelete.setText("Deletar");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 120, 80, -1));
 
         tableProcedurePerformed.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -83,10 +131,23 @@ public class ProcedurePerformedView extends javax.swing.JFrame {
             new String [] {
                 "Id", "Procedimento", "Data", "Valor Recebido", "Receita Total"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tableProcedurePerformed.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableProcedurePerformedMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableProcedurePerformed);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 560, 290));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 560, 280));
 
         labelBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Views/Images/TelasMenu.png"))); // NOI18N
         getContentPane().add(labelBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -95,8 +156,32 @@ public class ProcedurePerformedView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
+        _controller.createProcedurePerformed();
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void txtAmountReceivedPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAmountReceivedPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAmountReceivedPActionPerformed
+
+    private void comboBoxProcedureItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboBoxProcedureItemStateChanged
+        _controller.updateAmountReceived();
+    }//GEN-LAST:event_comboBoxProcedureItemStateChanged
+
+    private void tableProcedurePerformedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableProcedurePerformedMouseClicked
+        _controller.updateInputs();
+    }//GEN-LAST:event_tableProcedurePerformedMouseClicked
+
+    private void txtDatePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDatePActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDatePActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        _controller.updateProcedurePerformed();
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        _controller.deleteProcedurePerformed();
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -134,7 +219,9 @@ public class ProcedurePerformedView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> comboBoxProcedure;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelAmountReceived;
@@ -144,11 +231,15 @@ public class ProcedurePerformedView extends javax.swing.JFrame {
     private javax.swing.JTable tableProcedurePerformed;
     private javax.swing.JTextField txtAmountReceivedP;
     private javax.swing.JTextField txtDateP;
+    private javax.swing.JTextField txtId;
     // End of variables declaration//GEN-END:variables
 
     private void initView() {
+        this.setLocationRelativeTo(null);
         _controller.updateTable();
         _controller.updateComboBox();
+        _controller.updateDate();
+        _controller.updateAmountReceived();
     }
 
     public JComboBox<String> getComboBoxProcedure() {
@@ -166,6 +257,37 @@ public class ProcedurePerformedView extends javax.swing.JFrame {
     public void setTableProcedurePerformed(JTable tableProcedurePerformed) {
         this.tableProcedurePerformed = tableProcedurePerformed;
     }
+
+    public JTextField getTxtAmountReceivedP() {
+        return txtAmountReceivedP;
+    }
+
+    public void setTxtAmountReceivedP(JTextField txtAmountReceivedP) {
+        this.txtAmountReceivedP = txtAmountReceivedP;
+    }
+
+    public JTextField getTxtDateP() {
+        return txtDateP;
+    }
+
+    public void setTxtDateP(JTextField txtDateP) {
+        this.txtDateP = txtDateP;
+    }
+
+    public JTextField getTxtId() {
+        return txtId;
+    }
+
+    public void setTxtId(JTextField txtId) {
+        this.txtId = txtId;
+    }
     
-    
+    /**
+     * Exibe uma mensagem na tela.
+     *
+     * @param message Mensagem a ser exibida.
+     */
+    public void showMessage(String message) {
+        JOptionPane.showMessageDialog(null, message);
+    }
 }
