@@ -42,7 +42,9 @@ public class ProcedurePerformedController {
 
     public void updateAmountReceived() {
         AestheticProcedure procedure = _helper.getProcedure();
-        _helper.setAmountReceived(procedure.getPrice());
+        if (procedure != null) {
+            _helper.setAmountReceived(procedure.getPrice());
+        }
     }
 
     public void updateDate() {
@@ -92,7 +94,7 @@ public class ProcedurePerformedController {
             _view.showMessage("Erro: " + e.getMessage());
         }
     }
-    
+
     public void deleteProcedurePerformed() {
         try {
             ProcedurePerformedService service = new ProcedurePerformedService();
