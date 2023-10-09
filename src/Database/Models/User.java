@@ -4,7 +4,6 @@
  */
 package Database.Models;
 
-import Auth.Auth;
 
 /**
  * Classe que representa um usuário no sistema. Um usuário possui um ID, nome,
@@ -13,7 +12,7 @@ import Auth.Auth;
  *
  * @author Alarcon Vinicius
  */
-public class User extends Auth {
+public class User {
 
     /**
      * O identificador único do usuário.
@@ -152,20 +151,6 @@ public class User extends Auth {
      */
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    /**
-     * Realiza o logout do usuário, limpando suas informações e redefinindo as
-     * tentativas de login.
-     */
-    @Override
-    public void logout() {
-        setId(0);
-        setName("");
-        setEmail("");
-        setPassword("");
-        System.out.println("Usuário deslogado.");
-        this.resetTentativas();
     }
 
     /**
