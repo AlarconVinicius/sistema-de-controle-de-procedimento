@@ -4,9 +4,7 @@
  */
 package Business.Services;
 
-import Database.Models.AestheticProcedure;
 import Database.Models.ProcedurePerformed;
-import Database.Repositories.AestheticProceduresRepository;
 import Database.Repositories.ProceduresPerformedRepository;
 import java.util.List;
 
@@ -16,12 +14,22 @@ import java.util.List;
  */
 public class ProcedurePerformedService {
 
+    /**
+     *
+     */
     private final ProceduresPerformedRepository _repository;
 
+    /**
+     *
+     */
     public ProcedurePerformedService() {
         _repository = new ProceduresPerformedRepository();
     }
 
+    /**
+     *
+     * @return
+     */
     public List<ProcedurePerformed> getAll() {
         List<ProcedurePerformed> proceduresPerformedDb = _repository.getAll();
         if (proceduresPerformedDb == null) {
@@ -30,6 +38,11 @@ public class ProcedurePerformedService {
         return proceduresPerformedDb;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public ProcedurePerformed getById(int id) {
         ProcedurePerformed procedurePerformedDb = _repository.getById(id);
         if (procedurePerformedDb == null) {
@@ -38,6 +51,11 @@ public class ProcedurePerformedService {
         return procedurePerformedDb;
     }
 
+    /**
+     *
+     * @param procedurePerformed
+     * @return
+     */
     public boolean createProcedurePerformed(ProcedurePerformed procedurePerformed) {
         try {
             if (procedurePerformed.getId() > 0) {
@@ -50,6 +68,11 @@ public class ProcedurePerformedService {
         }
     }
 
+    /**
+     *
+     * @param procedurePerformed
+     * @return
+     */
     public boolean updateProcedurePerformed(ProcedurePerformed procedurePerformed) {
         try {
             if (procedurePerformed.getId() > 0) {
