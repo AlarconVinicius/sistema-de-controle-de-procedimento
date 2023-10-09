@@ -14,22 +14,6 @@ import Database.Repositories.UserRepository;
 public class AuthService {
 
     /**
-     * O número máximo de tentativas de login permitidas.
-     */
-    public final int MAX_ATTEMPTS = 3;
-
-    /**
-     * O número de tentativas de login atual.
-     */
-    private int attempts = 0;
-
-    /**
-     * Uma flag que indica se a conta está bloqueada devido a muitas tentativas
-     * malsucedidas.
-     */
-    private boolean blocked = false;
-
-    /**
      * Construtor padrão da classe Auth. Inicializa um novo objeto Auth com
      * valores padrão para tentativas e estado de bloqueio.
      */
@@ -40,7 +24,6 @@ public class AuthService {
      * Realiza uma tentativa de login com um email e senha fornecidos.
      *
      * @param user Usuário a ser autenticado.
-     * @param password A senha do usuário.
      */
     public final User login(User user) {
         
@@ -58,20 +41,12 @@ public class AuthService {
     }
 
     /**
-     * Realiza o logout do usuário.
-     */
-    public void logout() {
-        System.out.println("Usuário deslogado.");
-        resetTentativas();
-    }
-
-    /**
      * Verifica se um usuário com o email fornecido existe no sistema.
      *
      * @param email O email do usuário a ser verificado.
      * @return true se o usuário existir, false caso contrário.
      */
-    protected boolean userExists(String email) {
+    private boolean userExists(String email) {
         // Obtém o repositório de usuários e verifica se o usuário existe
         UserRepository userRepository = new UserRepository();
         User user = userRepository.getByEmail(email);
@@ -81,13 +56,5 @@ public class AuthService {
         }
 
         return true;
-    }
-
-    /**
-     * Reinicia o contador de tentativas e desbloqueia a conta.
-     */
-    protected final void resetTentativas() {
-        attempts = 0;
-        blocked = false;
     }
 }
