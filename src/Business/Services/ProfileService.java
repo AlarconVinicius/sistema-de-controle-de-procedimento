@@ -5,7 +5,6 @@
 
 package Business.Services;
 
-import Database.Models.AestheticProcedure;
 import Database.Models.User;
 import Database.Repositories.UserRepository;
 
