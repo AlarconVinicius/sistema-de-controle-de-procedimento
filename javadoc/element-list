@@ -1,0 +1,10 @@
+Business.Interfaces.Repositories
+Business.Services
+Controller
+Controller.Helper
+Database.Configuration
+Database.Models
+Database.Repositories
+Tests.Business
+Tests.Database
+Views
