@@ -1,12 +1,39 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * The MIT License
+ *
+ * Copyright 2023 Alarcon Vinicius.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ * 
+ * ---
+ * 
+ * Este projeto é disponibilizado sob a licença MIT.
+ * 
+ * 🔗 LinkedIn: https://www.linkedin.com/in/vin%C3%ADcius-alarcon-52a8a820a/
+ * 🔗 GitHub: https://github.com/AlarconVinicius
+ * 💼 Website: http://alarconvinicius.com.br/
  */
 package Database.Models;
 
 /**
  * Classe que representa procedimentos estéticos.
- * Cada procedimento estético possui um nome, descrição e preço.
+ * Cada procedimento estético possui um nome e preço.
  * 
  * @author Alarcon Vinicius
  */
@@ -34,7 +61,7 @@ public class AestheticProcedure {
     }
 
     /**
-     * Construtor que inicializa um objeto `AestheticProcedures` com nome, descrição e preço.
+     * Construtor que inicializa um objeto `AestheticProcedures` com nome e preço.
      * 
      * @param name O nome do procedimento estético.
      * @param price O preço do procedimento estético.
@@ -45,7 +72,7 @@ public class AestheticProcedure {
     }
 
     /**
-     * Construtor que inicializa um objeto `AestheticProcedures` com um identificador único, nome, descrição e preço.
+     * Construtor que inicializa um objeto `AestheticProcedures` com um identificador único, nome e preço.
      * 
      * @param id O identificador único do procedimento estético.
      * @param name O nome do procedimento estético.
