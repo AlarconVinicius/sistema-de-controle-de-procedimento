@@ -1,6 +1,33 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * The MIT License
+ *
+ * Copyright 2023 Alarcon Vinicius.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ * 
+ * ---
+ * 
+ * Este projeto é disponibilizado sob a licença MIT.
+ * 
+ * 🔗 LinkedIn: https://www.linkedin.com/in/vin%C3%ADcius-alarcon-52a8a820a/
+ * 🔗 GitHub: https://github.com/AlarconVinicius
+ * 💼 Website: http://alarconvinicius.com.br/
  */
 package Views;
 
@@ -11,15 +38,26 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 /**
+ * Classe que representa a interface gráfica para autenticação de usuários. Esta
+ * classe fornece funcionalidades para que os usuários insiram seu email e senha
+ * e efetuem o login no sistema.
  *
- * @author alarc
+ * A classe utiliza um controlador para realizar operações de autenticação e
+ * gerenciamento de usuários.
+ *
+ * @author Alarcon Vinicius
  */
 public class LoginView extends javax.swing.JFrame {
 
+    /**
+     * Controlador para operações relacionadas a autenticação
+     */
     private final LoginController _controller;
 
     /**
-     * Creates new form LoginScreen
+     * Cria uma nova instância da classe LoginView. Essa instância é responsável
+     * por exibir a interface gráfica para autenticação de usuários. Ela também
+     * configura a conexão com o banco de dados e cria tabelas necessárias.
      */
     public LoginView() {
         initComponents();
@@ -194,7 +232,7 @@ public class LoginView extends javax.swing.JFrame {
     /**
      * Obtém a senha do usuário.
      *
-     * @param A senha do usuário.
+     * @return
      */
     public JPasswordField getTxtPassword() {
         return txtPassword;

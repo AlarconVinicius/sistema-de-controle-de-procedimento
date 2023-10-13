@@ -1,21 +1,59 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * The MIT License
+ *
+ * Copyright 2023 Alarcon Vinicius.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ * 
+ * ---
+ * 
+ * Este projeto é disponibilizado sob a licença MIT.
+ * 
+ * 🔗 LinkedIn: https://www.linkedin.com/in/vin%C3%ADcius-alarcon-52a8a820a/
+ * 🔗 GitHub: https://github.com/AlarconVinicius
+ * 💼 Website: http://alarconvinicius.com.br/
  */
 package Views;
 
 import Controller.MainMenuController;
 
 /**
+ * Classe que representa a interface gráfica do menu principal do sistema. Esta
+ * classe fornece um menu de opções para que os usuários naveguem entre as
+ * diferentes funcionalidades do sistema.
  *
- * @author alarc
+ * O menu principal inclui opções para acessar procedimentos, procedimentos
+ * realizados, perfil do usuário e sair do sistema.
+ *
+ * @author Alarcon Vinicius
  */
 public class MainMenuView extends javax.swing.JFrame {
 
+    /**
+     * Controlador responsável pelas operações no menu principal
+     */
     private final MainMenuController _controller;
 
     /**
-     * Creates new form MainMenuView
+     * Cria uma nova instância da classe MainMenuView. Essa instância é
+     * responsável por exibir o menu principal do sistema, que oferece opções de
+     * navegação.
      */
     public MainMenuView() {
         initComponents();

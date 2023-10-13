@@ -1,6 +1,33 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * The MIT License
+ *
+ * Copyright 2023 Alarcon Vinicius.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ * 
+ * ---
+ * 
+ * Este projeto é disponibilizado sob a licença MIT.
+ * 
+ * 🔗 LinkedIn: https://www.linkedin.com/in/vin%C3%ADcius-alarcon-52a8a820a/
+ * 🔗 GitHub: https://github.com/AlarconVinicius
+ * 💼 Website: http://alarconvinicius.com.br/
  */
 package Views;
 
@@ -10,15 +37,20 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 /**
+ * Classe que representa a interface gráfica para a edição do perfil do usuário.
+ * Esta classe permite aos usuários visualizar e atualizar informações do
+ * perfil, como nome, email e senha.
  *
- * @author alarc
+ * @author Alarcon Vinicius
  */
 public class ProfileView extends javax.swing.JFrame {
 
+    // Controlador responsável pelas operações nesta tela
     private final ProfileController _controller;
 
     /**
-     * Creates new form ProfileView
+     * Cria uma nova instância da classe ProfileView. Essa instância é
+     * responsável por fornecer uma interface para edição do perfil do usuário.
      */
     public ProfileView() {
         initComponents();
@@ -206,34 +238,66 @@ public class ProfileView extends javax.swing.JFrame {
         _controller.updateFields();
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxtEmail() {
         return txtEmail;
     }
 
+    /**
+     *
+     * @param txtEmail
+     */
     public void setTxtEmail(JTextField txtEmail) {
         this.txtEmail = txtEmail;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxtId() {
         return txtId;
     }
 
+    /**
+     *
+     * @param txtId
+     */
     public void setTxtId(JTextField txtId) {
         this.txtId = txtId;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxtName() {
         return txtName;
     }
 
+    /**
+     *
+     * @param txtName
+     */
     public void setTxtName(JTextField txtName) {
         this.txtName = txtName;
     }
 
+    /**
+     *
+     * @return
+     */
     public JPasswordField getTxtPassword() {
         return txtPassword;
     }
 
+    /**
+     *
+     * @param txtPassword
+     */
     public void setTxtPassword(JPasswordField txtPassword) {
         this.txtPassword = txtPassword;
     }
@@ -246,6 +310,5 @@ public class ProfileView extends javax.swing.JFrame {
     public void showMessage(String message) {
         JOptionPane.showMessageDialog(null, message);
     }
-    
-    
+
 }

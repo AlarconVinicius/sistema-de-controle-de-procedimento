@@ -1,6 +1,33 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * The MIT License
+ *
+ * Copyright 2023 Alarcon Vinicius.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ * 
+ * ---
+ * 
+ * Este projeto é disponibilizado sob a licença MIT.
+ * 
+ * 🔗 LinkedIn: https://www.linkedin.com/in/vin%C3%ADcius-alarcon-52a8a820a/
+ * 🔗 GitHub: https://github.com/AlarconVinicius
+ * 💼 Website: http://alarconvinicius.com.br/
  */
 package Views;
 
@@ -11,15 +38,24 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 /**
+ * Classe que representa a interface gráfica para o registro de procedimentos
+ * realizados. Esta classe permite aos usuários inserir, atualizar e excluir
+ * registros de procedimentos realizados. Além disso, ela exibe uma tabela com
+ * os procedimentos realizados e seus detalhes.
  *
- * @author alarc
+ * @author Alarcon Vinicius
  */
 public class ProcedurePerformedView extends javax.swing.JFrame {
 
+    /**
+     * Controlador responsável pelas operações nesta tela
+     */
     private final ProcedurePerformedController _controller;
 
     /**
-     * Creates new form ProcedurePerformedView
+     * Cria uma nova instância da classe ProcedurePerformedView. Essa instância
+     * é responsável por fornecer uma interface para gerenciar procedimentos
+     * realizados.
      */
     public ProcedurePerformedView() {
         initComponents();
@@ -242,46 +278,86 @@ public class ProcedurePerformedView extends javax.swing.JFrame {
         _controller.updateAmountReceived();
     }
 
+    /**
+     *
+     * @return
+     */
     public JComboBox<String> getComboBoxProcedure() {
         return comboBoxProcedure;
     }
 
+    /**
+     *
+     * @param comboBoxProcedure
+     */
     public void setComboBoxProcedure(JComboBox<String> comboBoxProcedure) {
         this.comboBoxProcedure = comboBoxProcedure;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTable getTableProcedurePerformed() {
         return tableProcedurePerformed;
     }
 
+    /**
+     *
+     * @param tableProcedurePerformed
+     */
     public void setTableProcedurePerformed(JTable tableProcedurePerformed) {
         this.tableProcedurePerformed = tableProcedurePerformed;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxtAmountReceivedP() {
         return txtAmountReceivedP;
     }
 
+    /**
+     *
+     * @param txtAmountReceivedP
+     */
     public void setTxtAmountReceivedP(JTextField txtAmountReceivedP) {
         this.txtAmountReceivedP = txtAmountReceivedP;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxtDateP() {
         return txtDateP;
     }
 
+    /**
+     *
+     * @param txtDateP
+     */
     public void setTxtDateP(JTextField txtDateP) {
         this.txtDateP = txtDateP;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxtId() {
         return txtId;
     }
 
+    /**
+     *
+     * @param txtId
+     */
     public void setTxtId(JTextField txtId) {
         this.txtId = txtId;
     }
-    
+
     /**
      * Exibe uma mensagem na tela.
      *
