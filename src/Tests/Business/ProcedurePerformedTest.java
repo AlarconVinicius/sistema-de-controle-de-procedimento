@@ -1,8 +1,34 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * The MIT License
+ *
+ * Copyright 2023 Alarcon Vinicius.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ * 
+ * ---
+ * 
+ * Este projeto é disponibilizado sob a licença MIT.
+ * 
+ * 🔗 LinkedIn: https://www.linkedin.com/in/vin%C3%ADcius-alarcon-52a8a820a/
+ * 🔗 GitHub: https://github.com/AlarconVinicius
+ * 💼 Website: http://alarconvinicius.com.br/
  */
-
 package Tests.Business;
 
 import Business.Services.AestheticProcedureService;
@@ -13,10 +39,27 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
+ * Classe de teste para o serviço de procedimentos realizados
+ * (ProcedurePerformedService). Esta classe permite testar a funcionalidade de
+ * gerenciamento de procedimentos realizados, incluindo a criação, listagem,
+ * atualização e exclusão de procedimentos realizados. Também permite listar os
+ * procedimentos estéticos disponíveis para associação.
  *
  * @author Alarcon Vinicius
  */
 public class ProcedurePerformedTest {
+
+    /**
+     * Método principal que inicia a execução do teste do serviço de
+     * procedimentos realizados. Permite ao usuário interagir com o serviço,
+     * criando procedimentos realizados, listando todos os procedimentos
+     * estéticos e realizados, listando um procedimento realizado específico por
+     * ID, atualizando um procedimento realizado existente e excluindo um
+     * procedimento realizado.
+     *
+     * @param args Os argumentos da linha de comando (não são usados neste
+     * contexto).
+     */
     public static void main(String[] args) {
         AestheticProcedureService aestService = new AestheticProcedureService();
         ProcedurePerformedService service = new ProcedurePerformedService();
@@ -46,13 +89,13 @@ public class ProcedurePerformedTest {
         } else {
             System.out.println("Falha ao criar procedimento realizado!");
         }
-        
+
         // Listar todos os procedimentos realizados
         List<ProcedurePerformed> allProceduresPerformed = service.getAll();
         if (allProceduresPerformed != null && !allProceduresPerformed.isEmpty()) {
             System.out.println("Lista de todos os procedimentos realizados:");
             for (ProcedurePerformed procedurePerformed : allProceduresPerformed) {
-                System.out.println("ID: " + procedurePerformed.getId() + ", ID Procedimento Estético: " + procedurePerformed.getProcedure().getName()+ ", Data: " + procedurePerformed.getDate() + ", Valor Recebido: " + procedurePerformed.getAmountReceived());
+                System.out.println("ID: " + procedurePerformed.getId() + ", ID Procedimento Estético: " + procedurePerformed.getProcedure().getName() + ", Data: " + procedurePerformed.getDate() + ", Valor Recebido: " + procedurePerformed.getAmountReceived());
             }
         } else {
             System.out.println("Nenhum procedimento realizado encontrado.");
@@ -67,7 +110,7 @@ public class ProcedurePerformedTest {
             System.out.println("ID: " + procedurePerformedToDisplay.getId() + ", ID Procedimento Estético: " + procedurePerformedToDisplay.getProcedure().getName() + ", Data: " + procedurePerformedToDisplay.getDate() + ", Valor Recebido: " + procedurePerformedToDisplay.getAmountReceived());
         } else {
             System.out.println("Procedimento realizado não encontrado.");
-        }        
+        }
 
         // Atualizar um procedimento realizado existente
         System.out.println("Informe o ID do procedimento realizado a ser atualizado: ");
